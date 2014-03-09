@@ -21,6 +21,12 @@ chmod 400 /root/.ssh/authorized_keys
 chown root:root -R /root/.ssh
 
 ##
+# Rsyslog.
+##
+
+scp /etc/conf/rsyslog/rsyslog.conf /etc/rsyslog.conf
+
+##
 # Supervisord.
 ##
 

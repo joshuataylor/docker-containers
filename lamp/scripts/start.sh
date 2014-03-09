@@ -58,6 +58,12 @@ chown deployer:deployer -R /home/deployer/.ssh
 chown -R deployer:www-data /var/www
 
 ##
+# Rsyslog.
+##
+
+scp /etc/conf/rsyslog/rsyslog.conf /etc/rsyslog.conf
+
+##
 # Supervisord.
 ##
 
