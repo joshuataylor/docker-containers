@@ -41,6 +41,13 @@ RUN mkdir -p /var/run/sshd
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install rsyslog rsyslog-doc
 
 ##
+# Startup scripts.
+##
+
+ADD ./scripts/start.sh /root/start.sh
+RUN chmod 755 /root/start.sh
+
+##
 # Supervisord.
 ##
 
