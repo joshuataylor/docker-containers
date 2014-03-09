@@ -1,7 +1,7 @@
 # This is a docker Drupal environment for PNX QA and Staging.
 #
 
-FROM        previousnext/base
+FROM        previousnext/base:latest
 MAINTAINER  Nick Schuch <nick@previousnext.com.au>
 
 ENV SOLR_VERSION 3.6.2

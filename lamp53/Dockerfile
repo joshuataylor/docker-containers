@@ -1,6 +1,6 @@
 # This is a docker Drupal environment.
 
-FROM        previousnext/base
+FROM        previousnext/base:latest
 MAINTAINER  Nick Schuch <nick@previousnext.com.au>
 
 ##

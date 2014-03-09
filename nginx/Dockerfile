@@ -1,6 +1,6 @@
 # Basic nginx container.
 
-FROM        previousnext/base
+FROM        previousnext/base:latest
 MAINTAINER  Nick Schuch <nick@previousnext.com.au>
 
 ##
