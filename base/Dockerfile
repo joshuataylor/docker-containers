@@ -39,7 +39,6 @@ RUN mkdir -p /var/run/sshd
 ##
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install rsyslog rsyslog-doc
-ADD ./conf/rsyslog/rsyslog.conf /etc/rsyslog.conf
 
 ##
 # Supervisord.
