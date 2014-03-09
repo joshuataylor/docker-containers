@@ -52,4 +52,5 @@ RUN chmod 755 /root/start.sh
 ##
 
 RUN easy_install supervisor
+ADD ./conf/supervisor/supervisord.conf /etc/supervisord.conf
 RUN mkdir /var/log/supervisor/
