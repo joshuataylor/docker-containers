@@ -21,8 +21,8 @@ fi
 # Rsyslog.
 ##
 
-if [ -f '/etc/conf/rsyslog/rsyslog.conf' ]; then
-  scp /etc/conf/rsyslog/rsyslog.conf /etc/rsyslog.conf
+if [ -d '/etc/conf/rsyslog' ]; then
+  scp /etc/conf/rsyslog/* /etc/
 fi
 
 ##
