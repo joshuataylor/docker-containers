@@ -26,7 +26,7 @@ RUN mv /opt/solr-$SOLR_VERSION /opt/solr
 ##
 
 ADD ./conf/solr /opt/search_api
-RUN rsync -avz /opt/search_api/* /opt/solr/example/solr/conf/
+RUN rsync -avz /opt/search_api/* /opt/solr/example/solr/collection1/conf/
 
 ##
 # Startup scripts.
