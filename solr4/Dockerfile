@@ -17,9 +17,9 @@ RUN apt-get install -y openjdk-7-jre-headless tar
 ##
 
 RUN mkdir -p /opt
-ADD http://archive.apache.org/dist/lucene/solr/$SOLR_VERSION/apache-solr-$SOLR_VERSION.tgz /opt/apache-solr-$SOLR_VERSION.tgz
-RUN tar -C /opt --extract --file /opt/apache-solr-$SOLR_VERSION.tgz
-RUN mv /opt/apache-solr-$SOLR_VERSION /opt/solr
+ADD http://archive.apache.org/dist/lucene/solr/$SOLR_VERSION/solr-$SOLR_VERSION.tgz /opt/solr-$SOLR_VERSION.tgz
+RUN tar -C /opt --extract --file /opt/solr-$SOLR_VERSION.tgz
+RUN mv /opt/solr-$SOLR_VERSION /opt/solr
 
 ##
 # Add search_api configuration.
