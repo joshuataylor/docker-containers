@@ -19,7 +19,16 @@ RUN ln -fs /bin/true /sbin/initctl
 # Base.
 ##
 
+# APT.
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install fail2ban vim git curl wget pwgen python-setuptools vim-tiny sudo python-software-properties drush cron unzip
+
+# Composer.
+RUN curl -sS https://getcomposer.org/installer | php
+RUN mv composer.phar /usr/local/bin/composer && chmod +x /usr/local/bin/composer
+
+# Phing.
+RUN pear channel-discover pear.phing.info
+RUN pear install phing/phing
 
 ##
 # Users.
