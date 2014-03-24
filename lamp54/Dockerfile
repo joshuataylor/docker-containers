@@ -19,6 +19,9 @@ RUN chmod 755 /etc/apache2/foreground.sh
 # Mods.
 RUN cd /etc/apache2/mods-enabled && ln -s ../mods-available/rewrite.load .
 
+# Pear.
+RUN pear install Net_SmartIRC
+
 ##
 # Mysql.
 ##
