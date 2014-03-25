@@ -45,8 +45,8 @@ fi
 ##
 
 # Global ssh config.
-if [ -f '/etc/conf/sshd/sshd_config' ]; then
-  scp /etc/conf/sshd/sshd_config /etc/ssh/sshd_config
+if [ -d '/etc/conf/sshd' ]; then
+  rsync -avz /etc/conf/sshd/* /etc/ssh/
 fi
 
 # Root user.
