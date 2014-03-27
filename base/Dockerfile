@@ -44,10 +44,17 @@ RUN apt-get install -y openssh-server
 RUN mkdir -p /var/run/sshd
 
 ##
+# Fail2ban.
+##
+
+RUN mkdir /var/run/fail2ban
+
+##
 # Rsyslog.
 ##
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install rsyslog rsyslog-doc
+RUN sed -i 's/xconsole/console/g' /etc/rsyslog.d/*
 
 ##
 # Startup scripts.
