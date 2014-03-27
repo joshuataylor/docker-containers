@@ -1,0 +1,1 @@
+0 * * * * deployer /usr/bin/drush -r /var/www/current/app cron > /dev/null
