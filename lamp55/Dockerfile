@@ -35,14 +35,14 @@ ADD ./conf/php/php.ini /etc/php5/cli/php.ini
 RUN pear install Net_SmartIRC
 
 # Xhprof.
-apt-get install -y build-essential
-pear channel-update pear.php.net
-pecl install xhprof-beta
+RUN apt-get install -y build-essential
+RUN pear channel-update pear.php.net
+RUN pecl install xhprof-beta
 
 # Xdebug.
-apt-get install -y build-essential
-pear channel-update pear.php.net
-pecl install xdebug
+RUN apt-get install -y build-essential
+RUN pear channel-update pear.php.net
+RUN pecl install xdebug
 
 ##
 # Mysql.
