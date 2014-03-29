@@ -19,9 +19,6 @@ RUN chmod 755 /etc/apache2/foreground.sh
 # Mods.
 RUN cd /etc/apache2/mods-enabled && ln -s ../mods-available/rewrite.load .
 
-# Pear.
-RUN pear install Net_SmartIRC
-
 # vHost.
 RUN rm -f /etc/apache2/sites-enabled/*
 ADD ./conf/apache2/vhost.conf /etc/apache2/sites-available/drupal
@@ -33,6 +30,19 @@ RUN ln -s /etc/apache2/sites-available/drupal /etc/apache2/sites-enabled/drupal
 
 ADD ./conf/php/php.ini /etc/php5/apache2/php.ini
 ADD ./conf/php/php.ini /etc/php5/cli/php.ini
+
+# IRC.
+RUN pear install Net_SmartIRC
+
+# Xhprof.
+apt-get install -y build-essential > /dev/null
+pear channel-update pear.php.net > /dev/null
+pecl install xhprof-beta > /dev/null
+
+# Xdebug.
+apt-get install -y build-essential > /dev/null
+pear channel-update pear.php.net > /dev/null
+pecl install xdebug > /dev/null
 
 ##
 # Mysql.
