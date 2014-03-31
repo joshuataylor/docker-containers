@@ -11,7 +11,7 @@ MAINTAINER  Nick Schuch <nick@previousnext.com.au>
 RUN add-apt-repository ppa:ondrej/php5-oldstable
 RUN apt-get update
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2 libapache2-mod-php5 php5-curl php5-mysql php5-gd php-apc php-pear
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2 libapache2-mod-php5 php5-curl php5-mysql php5-gd php-apc php-pear php5-dev
 ADD ./scripts/foreground.sh /etc/apache2/foreground.sh
 RUN rm -rf /var/www/
 RUN chmod 755 /etc/apache2/foreground.sh
@@ -40,7 +40,7 @@ RUN pear channel-update pear.php.net
 RUN pecl install xhprof-beta
 
 # Xdebug.
-RUN apt-get install -y build-essential php5-xdebug
+RUN apt-get install -y build-essential
 RUN pear channel-update pear.php.net
 RUN pecl install xdebug
 
