@@ -80,6 +80,14 @@ if [ -f '/etc/conf/rsyslog/rsyslog.conf' ]; then
 fi
 
 ##
+# Nullmailer.
+##
+
+if [ -z "$NULLMAILER_REMOTE" ]; then
+  echo $NULLMAILER_REMOTE > /etc/nullmailer/remotes
+fi
+
+##
 # Supervisord.
 ##
 
