@@ -7,7 +7,7 @@ MAINTAINER  Nick Schuch <nick@previousnext.com.au>
 # Apache.
 ##
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2 libapache2-mod-php5 php5-curl php5-mysql php5-gd php-apc php-pear php5-dev php5-pspell
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2 libapache2-mod-php5 php5-curl php5-mysql php5-gd php-apc php-pear php5-dev php5-pspell nullmailer
 ADD ./scripts/foreground.sh /etc/apache2/foreground.sh
 RUN rm -rf /var/www/
 RUN chmod 755 /etc/apache2/foreground.sh
