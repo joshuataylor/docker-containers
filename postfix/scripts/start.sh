@@ -46,7 +46,7 @@ fi
 
 # Copy additional files.
 for file in hosts localtime nsswitch.conf resolv.conf services; do
-  cp -f /etc/${file} /var/spool/postfix/etc/{$file}
+  cp -f /etc/${file} /var/spool/postfix/etc/${file}
 done
 
 ##
