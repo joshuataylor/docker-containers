@@ -45,6 +45,10 @@ if [ ! -z "${ROOTMAIL}" ]; then
   /usr/sbin/postalias hash:/etc/aliases
 fi
 
+# Open relay. Wheee!
+/usr/sbin/postconf -e "mynetworks=0.0.0.0/0"
+
+
 ##
 # Supervisord.
 ##
