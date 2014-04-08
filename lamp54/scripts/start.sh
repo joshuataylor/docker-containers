@@ -86,6 +86,9 @@ fi
 if [ -z "$NULLMAILER_REMOTE" ]; then
   echo $NULLMAILER_REMOTE > /etc/nullmailer/remotes
 fi
+mkfifo /var/spool/nullmailer/trigger
+chmod 0622 /var/spool/nullmailer/trigger
+chown mail:root /var/spool/nullmailer/trigger
 
 ##
 # Supervisord.
