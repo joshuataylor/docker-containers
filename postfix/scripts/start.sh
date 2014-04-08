@@ -34,3 +34,9 @@ fi
 ##
 
 supervisord -n -c /etc/supervisord.conf
+
+##
+# Postfix.
+##
+
+invoke-rc.d postfix start
