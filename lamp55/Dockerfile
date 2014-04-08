@@ -73,14 +73,6 @@ ADD ./conf/supervisor/supervisord.conf /etc/supervisord.conf
 ADD ./scripts/start.sh /root/start.sh
 RUN chmod 755 /root/start.sh
 
-##
-# Nullmailer.
-##
-
-if [ -z "$NULLMAILER_REMOTE" ]; then
-  echo $NULLMAILER_REMOTE > /etc/nullmailer/remotes
-fi
-
 EXPOSE 22 80
 
 CMD ["/root/start.sh"]
