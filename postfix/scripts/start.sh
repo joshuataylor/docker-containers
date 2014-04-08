@@ -48,6 +48,8 @@ fi
 # Open relay. Wheee!
 /usr/sbin/postconf -e "mynetworks=0.0.0.0/0"
 
+# Copy additional files.
+scp /etc/resolve.conf /var/spool/postfix/etc/resolv.conf
 
 ##
 # Supervisord.
