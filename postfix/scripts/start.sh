@@ -41,8 +41,13 @@ fi
 # Open relay. Wheee!
 /usr/sbin/postconf -e "mynetworks=0.0.0.0/0"
 
+# Set the configured hostname.
+/usr/sbin/postconf -e "myhostname=${HOSTNAME}"
+
 # Copy additional files.
-scp /etc/resolve.conf /var/spool/postfix/etc/resolv.conf
+for file in hosts localtime nsswitch.conf resolv.conf services; do
+  cp -f /etc/${file} /var/spool/postfix/etc/{$file}
+done
 
 ##
 # Supervisord.
