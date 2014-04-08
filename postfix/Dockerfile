@@ -5,8 +5,8 @@ MAINTAINER Peter Lieverdink <me@cafuego.net>
 
 # Allow postfix to install without interaction.
 RUN echo "postfix postfix/main_mailer_type string 'Internet Site'" | debconf-set-selections
-RUN echo "postfix postfix/mailname string dev05.previousnext.com.au" | debconf-set-selections
-RUN echo "postfix postfix/root_address sysadmin@previousnext.com.au" | debconf-set-selections
+RUN echo "postfix postfix/mailname string HOSTNAME.EXAMPLE.COM" | debconf-set-selections
+RUN echo "postfix postfix/root_address ROOTMAIL@EXAMPLE.COM" | debconf-set-selections
 RUN echo "postfix postfix/mynetworks 0.0.0.0/0" | debconf-set-selections
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install postfix
