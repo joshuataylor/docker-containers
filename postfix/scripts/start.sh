@@ -30,6 +30,22 @@ if [ -f '/etc/conf/rsyslog/rsyslog.conf' ]; then
 fi
 
 ##
+# Postfix config.
+##
+if [ ! -z "${HOSTNAME}" ]; then
+    echo ${HOSTNAME} > /etc/mailname
+fi
+
+if [ ! -z "${ROOTMAIL}" ]; then
+  sed -i "s/ROOTMAIL@EXAMPLE.COM/${ROOTMAIL}/g" /etc/aliases
+  grep -q "${ROOTMAIL}" /etc/aliases >/dev/; RET=$?
+  if [ ${RET} -gt 0 ]; then
+    echo -e "root:\t${ROOTMAIL}" >> /etc/aliases
+  fi
+  /usr/sbin/postalias hash:/etc/aliases
+fi
+
+##
 # Supervisord.
 ##
 
