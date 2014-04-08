@@ -36,14 +36,7 @@ if [ ! -z "${HOSTNAME}" ]; then
     echo ${HOSTNAME} > /etc/mailname
 fi
 
-if [ ! -z "${ROOTMAIL}" ]; then
-  sed -i "s/ROOTMAIL@EXAMPLE.COM/${ROOTMAIL}/g" /etc/aliases
-  grep -q "${ROOTMAIL}" /etc/aliases >/dev/; RET=$?
-  if [ ${RET} -gt 0 ]; then
-    echo -e "root:\t${ROOTMAIL}" >> /etc/aliases
-  fi
-  /usr/sbin/postalias hash:/etc/aliases
-fi
+/usr/sbin/postalias hash:/etc/aliases
 
 # Open relay. Wheee!
 /usr/sbin/postconf -e "mynetworks=0.0.0.0/0"
