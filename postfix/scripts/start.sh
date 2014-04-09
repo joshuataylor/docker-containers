@@ -33,16 +33,15 @@ fi
 # Postfix config.
 ##
 if [ ! -z "${HOSTNAME}" ]; then
-    echo ${HOSTNAME} > /etc/mailname
+  echo ${HOSTNAME} > /etc/mailname
+  /usr/sbin/postconf -e "myhostname=${HOSTNAME}"
+  /usr/sbin/postconf -e "mydestination=${HOSTNAME}"
 fi
 
 /usr/sbin/postalias hash:/etc/aliases
 
 # Open relay. Wheee!
 /usr/sbin/postconf -e "mynetworks=0.0.0.0/0"
-
-# Set the configured hostname.
-/usr/sbin/postconf -e "myhostname=${HOSTNAME}"
 
 # Copy additional files.
 for file in hosts localtime nsswitch.conf resolv.conf services; do
