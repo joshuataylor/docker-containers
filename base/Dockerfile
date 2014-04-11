@@ -30,13 +30,6 @@ RUN mv composer.phar /usr/local/bin/composer && chmod +x /usr/local/bin/composer
 RUN pear channel-discover pear.phing.info
 RUN pear install phing/phing
 
-# Drush.
-
-ADD https://github.com/drush-ops/drush/archive/6.2.0.zip /tmp/drush.zip
-RUN unzip /tmp/drush.zip
-RUN mv /tmp/drush-6.2.0 /opt/drush
-RUN ln -s /opt/drush/drush /usr/local/bin/drush
-
 ##
 # Users.
 ##

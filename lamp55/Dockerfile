@@ -31,6 +31,12 @@ RUN ln -s /etc/apache2/sites-available/drupal.conf /etc/apache2/sites-enabled/dr
 ADD ./conf/php/php.ini /etc/php5/apache2/php.ini
 ADD ./conf/php/php.ini /etc/php5/cli/php.ini
 
+# Drush.
+ADD https://github.com/drush-ops/drush/archive/6.2.0.zip /tmp/drush.zip
+RUN unzip /tmp/drush.zip
+RUN mv /tmp/drush-6.2.0 /opt/drush
+RUN ln -s /opt/drush/drush /usr/local/bin/drush
+
 # IRC.
 RUN pear install Net_SmartIRC
 
