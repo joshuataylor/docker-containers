@@ -20,7 +20,7 @@ RUN ln -fs /bin/true /sbin/initctl
 ##
 
 # APT.
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install fail2ban vim git curl wget pwgen python-setuptools vim-tiny sudo python-software-properties drush cron unzip
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install fail2ban vim git curl wget pwgen python-setuptools vim-tiny sudo python-software-properties cron unzip
 
 # Composer.
 RUN curl -sS https://getcomposer.org/installer | php
@@ -29,6 +29,13 @@ RUN mv composer.phar /usr/local/bin/composer && chmod +x /usr/local/bin/composer
 # Phing.
 RUN pear channel-discover pear.phing.info
 RUN pear install phing/phing
+
+# Drush.
+
+ADD https://github.com/drush-ops/drush/archive/6.2.0.zip /tmp/drush.zip
+RUN unzip /tmp/drush.zip
+RUN mv /tmp/drush-6.2.0 /opt/drush
+RUN ln -s /opt/drush/drush /usr/local/bin/drush
 
 ##
 # Users.

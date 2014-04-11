@@ -8,6 +8,10 @@
 # Apache.
 ##
 
+if [ -f '/etc/conf/apache/apache2.conf' ]; then
+  scp /etc/conf/apache/apache2.conf /etc/apache2/apache2.conf
+fi
+
 if [ -f '/etc/conf/apache/vhost.conf' ]; then
   rm -f /etc/apache2/sites-enabled/*
   scp /etc/conf/apache/vhost.conf /etc/apache2/sites-available/drupal.conf
