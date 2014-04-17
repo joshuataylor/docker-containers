@@ -4,7 +4,7 @@
 # Ensure we have good permissions.
 ##
 
-chmod -R 775 /etc/nginx/site-enabled
+chmod -R 775 /etc/nginx/sites-enabled
 chmod -R 775 /etc/nginx/auth
 
 ##
