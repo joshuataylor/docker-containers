@@ -17,7 +17,7 @@ RUN apt-get -y dist-upgrade
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2 php5 libapache2-mod-php5 php5-curl php5-mysql php5-gd php-apc php-pear php5-pspell nullmailer
 
 # NOTE! This will force a libssl downgrade to avoid a version conflict.
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y --force-yes install php5-dev libssl-dev==1.0.1-4ubuntu3 libssl1.0.0=1.0.1-4ubuntu3
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y --force-yes install php5-dev libssl-dev=1.0.1-4ubuntu3 libssl1.0.0=1.0.1-4ubuntu3
 # NOTE!
 
 ADD ./scripts/foreground.sh /etc/apache2/foreground.sh
