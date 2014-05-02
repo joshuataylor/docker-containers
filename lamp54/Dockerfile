@@ -77,6 +77,13 @@ ADD ./conf/mysql/my.cnf /etc/mysql/my.cnf
 ADD ./conf/cron/drupal /etc/cron.d/drupal
 
 ##
+# Scripts.
+#   This is where we add all our utlitiy scripts.
+##
+
+ADD ./scripts/permissions.sh /root/permissions.sh
+
+##
 # Supervisord.
 ##
 
