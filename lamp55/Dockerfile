@@ -20,6 +20,10 @@ ADD ./scripts/foreground.sh /etc/apache2/foreground.sh
 RUN rm -rf /var/www/
 RUN chmod 755 /etc/apache2/foreground.sh
 
+# This fixes missing file errors.
+RUN touch /etc/apache2/httpd.conf
+RUN mkdir /etc/apache2/conf.d
+
 # Mods.
 RUN cd /etc/apache2/mods-enabled && ln -s ../mods-available/rewrite.load .
 
