@@ -14,11 +14,7 @@ RUN add-apt-repository ppa:ondrej/php5
 RUN apt-get update
 RUN apt-get -y dist-upgrade
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2 php5 libapache2-mod-php5 php5-curl php5-mysql php5-gd php-apc php-pear php5-pspell nullmailer
-
-# NOTE! This will force a libssl downgrade to avoid a version conflict.
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y --force-yes install php5-dev libssl-dev=1.0.1-4ubuntu3 libssl1.0.0=1.0.1-4ubuntu3
-# NOTE!
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2 php5 libapache2-mod-php5 php5-curl php5-mysql php5-gd php-apc php-pear php5-dev php5-pspell nullmailer libssl-dev
 
 ADD ./scripts/foreground.sh /etc/apache2/foreground.sh
 RUN rm -rf /var/www/
@@ -70,8 +66,8 @@ RUN pecl install xdebug
 # Mysql.
 ##
 
-RUN apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xcbcb082a1bb943db
-RUN add-apt-repository 'deb http://mirrors.linsrv.net/mariadb/repo/5.5/ubuntu precise main'
+RUN apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xcbcb082a1bb943db
+RUN add-apt-repository 'deb http://mirror.aarnet.edu.au/pub/MariaDB/repo/5.5/ubuntu precise main'
 RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install mariadb-server
 ADD ./conf/mysql/my.cnf /etc/mysql/my.cnf

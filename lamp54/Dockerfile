@@ -64,8 +64,8 @@ RUN pecl install xdebug
 # Mysql.
 ##
 
-RUN apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xcbcb082a1bb943db
-RUN add-apt-repository 'deb http://mirrors.linsrv.net/mariadb/repo/5.5/ubuntu precise main'
+RUN apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xcbcb082a1bb943db
+RUN add-apt-repository 'deb http://mirror.aarnet.edu.au/pub/MariaDB/repo/5.5/ubuntu precise main'
 RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install mariadb-server
 ADD ./conf/mysql/my.cnf /etc/mysql/my.cnf
