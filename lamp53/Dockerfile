@@ -42,6 +42,7 @@ ADD https://github.com/drush-ops/drush/archive/6.2.0.zip /tmp/drush.zip
 RUN cd /tmp && unzip /tmp/drush.zip
 RUN mv /tmp/drush-6.2.0 /opt/drush
 RUN ln -s /opt/drush/drush /usr/local/bin/drush
+RUN chmod -R 777 /opt/drush/lib
 
 # IRC.
 RUN pear install Net_SmartIRC
