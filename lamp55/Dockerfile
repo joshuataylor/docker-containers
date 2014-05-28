@@ -14,7 +14,7 @@ RUN add-apt-repository ppa:ondrej/php5
 RUN apt-get update
 RUN apt-get -y dist-upgrade
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2 php5 libapache2-mod-php5 php5-curl php5-mysql php5-gd php-apc php-pear php5-dev php5-pspell nullmailer libssl-dev
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2 php5 libapache2-mod-php5 php5-curl php5-mysql php5-gd php5-mcrypt php-apc php-pear php5-dev php5-pspell nullmailer libssl-dev
 
 ADD ./scripts/foreground.sh /etc/apache2/foreground.sh
 RUN rm -rf /var/www/
@@ -26,6 +26,9 @@ RUN mkdir /etc/apache2/conf.d
 
 # Mods.
 RUN cd /etc/apache2/mods-enabled && ln -s ../mods-available/rewrite.load .
+
+# We are removing this because we deal with it in our own custom apache2.conf.
+RUN rm /etc/apache2/mods-enabled/mpm_prefork.conf
 
 # vHost.
 RUN rm -f /etc/apache2/sites-enabled/*
