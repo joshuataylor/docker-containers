@@ -24,6 +24,10 @@ RUN echo "deb http://www.rabbitmq.com/debian/ testing main" > /etc/apt/sources.l
 RUN apt-get -qq update > /dev/null
 RUN apt-get -qq -y install rabbitmq-server > /dev/null
 
+# We do this to allow remote users.
+RUN /usr/sbin/rabbitmq-plugins enable rabbitmq_management
+RUN echo "[{rabbit, [{loopback_users, []}]}]." > /etc/rabbitmq/rabbitmq.config
+
 EXPOSE 5672 15672 4369
 
 CMD /usr/sbin/rabbitmq-server
