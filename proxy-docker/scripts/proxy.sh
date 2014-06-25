@@ -9,9 +9,7 @@
 ##
 
 # Commented variables are set by Docker configuration.
-# DOMAIN='ci-slave1.local'
-# POTENTIAL_PORTS='8983 80'
-# DOCKER_HOST
+POTENTIAL_PORTS='8983 80' # This is solr and apache ports.
 DOCKER_BIN='docker'
 NGINX_PROXY_DIR='/etc/nginx/sites-enabled'
 NGINX_AUTH_DIR='/etc/nginx/auth'
@@ -24,19 +22,19 @@ NGINX_AUTH_DIR='/etc/nginx/auth'
 proxyConf () {
   # Variables.
   PROXY_PROJECT=$1
-  PROXY_DOMAIN=$2
+  PROXY_SUB=$2
   PROXY_TARGET=$3
 
   # Create the nginx proxy configuration.
-cat > $NGINX_PROXY_DIR/$PROXY_DOMAIN << EOF
+cat > $NGINX_PROXY_DIR/$PROXY_SUB << EOF
 server {
   listen                    *:80;
-  server_name               ${PROXY_DOMAIN};
+  server_name               ${PROXY_SUB}.*;
   auth_basic                "Restricted";
   auth_basic_user_file      ${NGINX_AUTH_DIR}/${PROXY_PROJECT};
   index                     index.html index.htm index.php;
-  access_log                /var/log/nginx/${PROXY_DOMAIN}.access.log;
-  error_log                 /var/log/nginx/${PROXY_DOMAIN}.error.log;
+  access_log                /var/log/nginx/${PROXY_SUB}.access.log;
+  error_log                 /var/log/nginx/${PROXY_SUB}.error.log;
   location / {
     proxy_pass              http://${PROXY_TARGET};
     proxy_set_header        Host \$host;
@@ -96,9 +94,12 @@ proxyBuild () {
     fi
 
     # Create the proxy record.
-    proxyConf $PROJECT "${SUB}.${DOMAIN}" "${IP}:${PORT}"
+    proxyConf $PROJECT $SUB "${IP}:${PORT}"
   done
 }
+
+# Ensure we can connect to the docker via the bridge.
+export DOCKER_HOST=tcp://172.17.42.1:4243
 
 # Run the proxy builder in a daemon like mode.
 while true; do
