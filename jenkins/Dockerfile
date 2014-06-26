@@ -41,6 +41,13 @@ ENV JENKINS_HOME /var/lib/jenkins
 
 ADD ./conf/supervisor/supervisord.conf /etc/supervisord.conf
 
+##
+# Startup scripts.
+##
+
+ADD ./scripts/start.sh /root/start.sh
+RUN chmod 755 /root/start.sh
+
 EXPOSE 8080 22
 
 VOLUME /var/lib/jenkins
