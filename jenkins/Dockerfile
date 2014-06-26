@@ -1,6 +1,10 @@
 FROM previousnext/base
 MAINTAINER Nick Schuch "nick@previousnext.com.au"
 
+##
+# Jenkins.
+##
+
 # Java.
 RUN RUNLEVEL=1 DEBIAN_FRONTEND=noninteractive apt-get install -y wget openjdk-6-jre-headless git-core
 
@@ -25,12 +29,20 @@ RUN (cd /var/lib/jenkins/plugins && wget --no-check-certificate http://updates.j
 RUN (cd /var/lib/jenkins/plugins && wget --no-check-certificate http://updates.jenkins-ci.org/latest/scm-api.hpi)
 RUN (cd /var/lib/jenkins/plugins && wget --no-check-certificate http://updates.jenkins-ci.org/latest/simple-theme-plugin.hpi)
 RUN (cd /var/lib/jenkins/plugins && wget --no-check-certificate http://updates.jenkins-ci.org/latest/swarm.hpi)
+RUN (cd /var/lib/jenkins/plugins && wget --no-check-certificate http://updates.jenkins-ci.org/latest/checkstyle.hpi)
+RUN (cd /var/lib/jenkins/plugins && wget --no-check-certificate http://updates.jenkins-ci.org/latest/ansicolor.hpi)
 RUN echo "java -jar /usr/share/jenkins/jenkins.war" > /usr/local/bin/run && chmod +x /usr/local/bin/run
 
 ENV JENKINS_HOME /var/lib/jenkins
 
-EXPOSE 8080
+##
+# Supervisord.
+##
+
+ADD ./conf/supervisor/supervisord.conf /etc/supervisord.conf
+
+EXPOSE 8080 22
 
 VOLUME /var/lib/jenkins
 
-CMD ["java", "-jar", "/usr/share/jenkins/jenkins.war"]
+CMD ["/root/start.sh"]
