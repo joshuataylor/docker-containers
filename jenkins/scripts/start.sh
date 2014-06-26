@@ -41,10 +41,11 @@ fi
 # Jenkins.
 ##
 
+JENKINS_DIR='/root/.jenkins'
 if [ -d '/etc/conf/jenkins' ]; then
-  rsync -avz /etc/conf/jenkins/* /var/lib/jenkins
+  mkdir -p $JENKINS_DIR
+  rsync -avz /etc/conf/jenkins/* $JENKINS_DIR/
 fi
-chown -R jenkins:jenkins /var/lib/jenkins
 
 ##
 # Supervisord.
