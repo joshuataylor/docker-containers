@@ -61,3 +61,9 @@ RUN chmod 755 /root/start.sh
 RUN easy_install supervisor
 ADD ./conf/supervisor/supervisord.conf /etc/supervisord.conf
 RUN mkdir /var/log/supervisor/
+
+##
+# Inotify
+##
+
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install inoticoming
