@@ -41,7 +41,7 @@ fi
 # Jenkins.
 ##
 
-JENKINS_DIR='/root/.jenkins'
+JENKINS_DIR='/var/lib/jenkins'
 if [ -d '/etc/conf/jenkins' ]; then
   mkdir -p $JENKINS_DIR
   rsync -avz /etc/conf/jenkins/* $JENKINS_DIR/
