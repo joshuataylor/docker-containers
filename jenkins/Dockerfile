@@ -21,7 +21,7 @@ RUN mkdir -p /var/lib/jenkins/plugins
 RUN (cd /var/lib/jenkins/plugins && wget --no-check-certificate http://updates.jenkins-ci.org/download/plugins/greenballs/1.13/greenballs.hpi)
 RUN (cd /var/lib/jenkins/plugins && wget --no-check-certificate http://updates.jenkins-ci.org/download/plugins/instant-messaging/1.27/instant-messaging.hpi)
 RUN (cd /var/lib/jenkins/plugins && wget --no-check-certificate http://updates.jenkins-ci.org/download/plugins/ircbot/2.23/ircbot.hpi)
-RUN (cd /var/lib/jenkins/plugins && wget --no-check-certificate http://updates.jenkins-ci.org/download/plugins/credentials/2.23/credentials.hpi)
+RUN (cd /var/lib/jenkins/plugins && wget --no-check-certificate http://updates.jenkins-ci.org/download/plugins/credentials/1.9.4/credentials.hpi)
 RUN (cd /var/lib/jenkins/plugins && wget --no-check-certificate http://updates.jenkins-ci.org/download/plugins/ssh-credentials/1.5.1/ssh-credentials.hpi)
 RUN (cd /var/lib/jenkins/plugins && wget --no-check-certificate http://updates.jenkins-ci.org/download/plugins/ssh-agent/1.4/ssh-agent.hpi)
 RUN (cd /var/lib/jenkins/plugins && wget --no-check-certificate http://updates.jenkins-ci.org/download/plugins/git-client/1.6.1/git-client.hpi)
