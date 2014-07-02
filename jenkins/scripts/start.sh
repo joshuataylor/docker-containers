@@ -44,7 +44,11 @@ fi
 JENKINS_DIR='/var/lib/jenkins'
 if [ -d '/etc/conf/jenkins' ]; then
   mkdir -p $JENKINS_DIR
-  rsync -avz /etc/conf/jenkins/* $JENKINS_DIR/
+  FILES=/etc/conf/jenkins/*.xml*
+  for FILE_DIR in $FILES; do
+    FILE=$(basename $FILE_DIR)
+    ln -sf $FILE_DIR $JENKINS_DIR/$FILE
+  done
 fi
 
 ##
