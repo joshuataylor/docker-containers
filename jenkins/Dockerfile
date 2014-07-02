@@ -14,7 +14,7 @@ RUN echo "deb http://pkg.jenkins-ci.org/debian binary/" > /etc/apt/sources.list.
 RUN apt-get update
 
 # Install.
-RUN RUNLEVEL=1 DEBIAN_FRONTEND=1 apt-get install -y jenkins
+RUN RUNLEVEL=1 DEBIAN_FRONTEND=1 apt-get install -y jenkins=1.550
 
 # Plugins.
 RUN mkdir -p /var/lib/jenkins/plugins
