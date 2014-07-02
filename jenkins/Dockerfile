@@ -37,7 +37,7 @@ RUN (cd /var/lib/jenkins/plugins && wget --no-check-certificate http://updates.j
 RUN (cd /var/lib/jenkins/plugins && wget --no-check-certificate http://updates.jenkins-ci.org/download/plugins/dashboard-view/2.9.2/dashboard-view.hpi)
 RUN (cd /var/lib/jenkins/plugins && wget --no-check-certificate http://updates.jenkins-ci.org/download/plugins/maven-plugin/2.3/maven-plugin.hpi)
 RUN (cd /var/lib/jenkins/plugins && wget --no-check-certificate http://updates.jenkins-ci.org/download/plugins/jquery/1.7.2-1/jquery.hpi)
-RUN (cd /var/lib/jenkins/plugins && wget --no-check-certificate http://updates.jenkins-ci.org/download/plugins/ghprb/1.9/ghprb.hpi)
+RUN (cd /var/lib/jenkins/plugins && wget --no-check-certificate http://updates.jenkins-ci.org/download/plugins/ghprb/1.12/ghprb.hpi)
 RUN (cd /var/lib/jenkins/plugins && wget --no-check-certificate http://updates.jenkins-ci.org/download/plugins/github-api/1.54/github-api.hpi)
 RUN (cd /var/lib/jenkins/plugins && wget --no-check-certificate http://updates.jenkins-ci.org/download/plugins/github/1.8/github.hpi)
 RUN (cd /var/lib/jenkins/plugins && wget --no-check-certificate http://updates.jenkins-ci.org/download/plugins/github-oauth/0.18/github-oauth.hpi)
