@@ -39,7 +39,7 @@ RUN mv composer.phar /usr/local/bin/composer && chmod +x /usr/local/bin/composer
 
 # Phing.
 RUN pear channel-discover pear.phing.info
-RUN pear install phing/phing
+RUN pear install phing/phing-2.6.1
 
 # Drush.
 ADD https://github.com/drush-ops/drush/archive/6.2.0.zip /tmp/drush.zip
