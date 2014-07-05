@@ -38,20 +38,6 @@ if [ -f '/etc/conf/rsyslog/rsyslog.conf' ]; then
 fi
 
 ##
-# Jenkins.
-##
-
-JENKINS_DIR='/var/lib/jenkins'
-if [ -d '/etc/conf/jenkins' ]; then
-  mkdir -p $JENKINS_DIR
-  FILES=/etc/conf/jenkins/*.xml*
-  for FILE_DIR in $FILES; do
-    FILE=$(basename $FILE_DIR)
-    ln -sf $FILE_DIR $JENKINS_DIR/$FILE
-  done
-fi
-
-##
 # Supervisord.
 ##
 
