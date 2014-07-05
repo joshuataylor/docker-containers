@@ -14,7 +14,7 @@ RUN echo "deb http://pkg.jenkins-ci.org/debian binary/" > /etc/apt/sources.list.
 RUN apt-get update
 
 # Install.
-RUN RUNLEVEL=1 DEBIAN_FRONTEND=1 apt-get install -y jenkins
+RUN RUNLEVEL=1 DEBIAN_FRONTEND=1 apt-get install -y jenkins ttf-dejavu
 ADD http://mirrors.jenkins-ci.org/war/latest/jenkins.war /usr/share/jenkins/jenkins.war
 RUN chmod 644 /usr/share/jenkins/jenkins.war
 
