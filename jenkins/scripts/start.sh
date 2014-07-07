@@ -38,6 +38,13 @@ if [ -f '/etc/conf/rsyslog/rsyslog.conf' ]; then
 fi
 
 ##
+# Jenkins.
+##
+
+rm -fR /var/lib/jenkins/plugins
+rsync -avz /opt/jenkins/plugins/* /var/lib/jenkins/plugins
+
+##
 # Supervisord.
 ##
 
