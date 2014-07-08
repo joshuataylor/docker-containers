@@ -47,7 +47,7 @@ RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer && chmod +x /usr/local/bin/composer
 
 # Bundler.
-RUN apt-get install -y ruby1.9.1
+RUN apt-get install -y ruby1.9.1 ruby1.9.1-dev
 RUN gem install bundler -v 1.6.3
 
 # Phing.
