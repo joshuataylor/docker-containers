@@ -46,6 +46,10 @@ ADD ./conf/php/php.ini /etc/php5/cli/php.ini
 RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer && chmod +x /usr/local/bin/composer
 
+# Bundler.
+RUN apt-get install -y ruby1.9.1
+RUN gem install bundler -v 1.6.3
+
 # Phing.
 RUN pear channel-discover pear.phing.info
 RUN pear install phing/phing-2.6.1
