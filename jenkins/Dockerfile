@@ -42,7 +42,7 @@ RUN (cd /opt/jenkins/plugins && wget --no-check-certificate http://updates.jenki
 RUN (cd /opt/jenkins/plugins && wget --no-check-certificate http://updates.jenkins-ci.org/download/plugins/ghprb/1.12/ghprb.hpi)
 RUN (cd /opt/jenkins/plugins && wget --no-check-certificate http://updates.jenkins-ci.org/download/plugins/github-api/1.54/github-api.hpi)
 RUN (cd /opt/jenkins/plugins && wget --no-check-certificate http://updates.jenkins-ci.org/download/plugins/github/1.8/github.hpi)
-RUN (cd /opt/jenkins/plugins && wget --no-check-certificate http://updates.jenkins-ci.org/download/plugins/github-oauth/0.16/github-oauth.hpi)
+RUN (cd /opt/jenkins/plugins && wget --no-check-certificate http://updates.jenkins-ci.org/download/plugins/github-oauth/0.14/github-oauth.hpi)
 RUN (cd /opt/jenkins/plugins && wget --no-check-certificate http://updates.jenkins-ci.org/download/plugins/mailer/1.8/mailer.hpi)
 RUN (cd /opt/jenkins/plugins && wget --no-check-certificate http://updates.jenkins-ci.org/download/plugins/sidebar-link/1.6/sidebar-link.hpi)
 RUN (cd /opt/jenkins/plugins && wget --no-check-certificate http://updates.jenkins-ci.org/download/plugins/ws-cleanup/0.21/ws-cleanup.hpi)
