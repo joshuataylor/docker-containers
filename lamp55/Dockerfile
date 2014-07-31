@@ -26,6 +26,7 @@ RUN mkdir /etc/apache2/conf.d
 
 # Mods.
 RUN cd /etc/apache2/mods-enabled && ln -s ../mods-available/rewrite.load .
+RUN cd /etc/apache2/mods-enabled && ln -s ../mods-available/headers.load .
 
 # We are removing this because we deal with it in our own custom apache2.conf.
 RUN rm /etc/apache2/mods-enabled/mpm_prefork.conf

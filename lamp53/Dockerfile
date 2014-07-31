@@ -16,6 +16,7 @@ RUN chmod 755 /etc/apache2/foreground.sh
 
 # Mods.
 RUN cd /etc/apache2/mods-enabled && ln -s ../mods-available/rewrite.load .
+RUN cd /etc/apache2/mods-enabled && ln -s ../mods-available/headers.load .
 
 # vHost.
 RUN rm -f /etc/apache2/sites-enabled/*
