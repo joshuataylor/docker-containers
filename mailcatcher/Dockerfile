@@ -3,7 +3,7 @@ MAINTAINER  Nick Schuch <nick@previousnext.com.au>
 
 RUN apt-get -qq update && apt-get -y upgrade && apt-get clean
 
-RUN apt-get install -y rubygems libsqlite3-dev
+RUN apt-get install -y ruby1.9.1-dev libsqlite3-dev build-essential
 RUN gem install mailcatcher --no-ri --no-rdoc
 
 ##
