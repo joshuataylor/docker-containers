@@ -2,9 +2,7 @@ FROM previousnext/base
 MAINTAINER Nick Schuch "nick@previousnext.com.au"
 
 # Install Nginx.
-RUN echo "deb http://ppa.launchpad.net/nginx/stable/ubuntu trusty main" > /etc/apt/sources.list.d/nginx-stable-trusty.list
-RUN echo "deb-src http://ppa.launchpad.net/nginx/stable/ubuntu trusty main" >> /etc/apt/sources.list.d/nginx-stable-trusty.list
-RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys C300EE8C
+RUN add-apt-repository -y ppa:nginx/stable
 RUN apt-get update
 RUN apt-get install -y  wget nginx
 
