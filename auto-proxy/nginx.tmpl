@@ -23,6 +23,10 @@ upstream {{ $host }} {
                 # {{$value.Name}}
                 server {{ $address.IP }}:{{ $address.Port }};
                 {{ end }}
+		{{ if eq $address.Port "9000" }}		
+                # {{$value.Name}}
+                server {{ $address.IP }}:{{ $address.Port }};
+                {{ end }}	
 	{{ end }}
 {{ end }}
 }
