@@ -12,16 +12,17 @@ RUN apt-get install -y ruby1.9.1-dev build-essential
 ##
 
 RUN gem install travis --no-rdoc --no-ri
-RUN git clone https://github.com/travis-ci/travis-build.git /opt/travis-build
 RUN mkdir /root/.travis
-RUN ln -s /opt/travis-build /root/.travis/travis-build
+RUN git clone --branch deploy.2014-07-01.03-01 https://github.com/travis-ci/travis-build.git /root/.travis/travis-build
 RUN travis version
 
 ##
-# Entry points.
+# Startup scripts.
 ##
+
+ADD ./scripts/start.sh /root/start.sh
+RUN chmod 755 /root/start.sh
 
 VOLUME ["/data"]
 WORKDIR /data
-ENTRYPOINT ["travis", "run", "--skip-version-check", "--skip-completion-check"]
-CMD ["-p"]
+CMD ["/root/start.sh"]
