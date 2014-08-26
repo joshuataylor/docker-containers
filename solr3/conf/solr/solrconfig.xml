@@ -68,7 +68,7 @@
        the classpath, this is useful for including all jars in a
        directory.
     -->
-  <lib dir="${solr.contrib.dir:../../contrib}/extraction/lib" />
+  <lib dir="../../contrib/extraction/lib" />
   <lib dir="${solr.contrib.dir:../../contrib}/clustering/lib/" />
 
   <!-- The velocity library has been known to crash Solr in some
