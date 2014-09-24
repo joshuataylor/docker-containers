@@ -63,6 +63,8 @@
 
               <lib dir="./lib" />
     -->
+  <lib dir="./lib" />
+  <lib dir="../../dist/" regex="apache-solr-cell-\d.*\.jar" />
 
   <!-- A dir option by itself adds any files found in the directory to
        the classpath, this is useful for including all jars in a
