@@ -23,6 +23,9 @@ RUN rm -f /etc/apache2/sites-enabled/*
 ADD ./conf/apache2/vhost.conf /etc/apache2/sites-available/drupal
 RUN ln -s /etc/apache2/sites-available/drupal /etc/apache2/sites-enabled/drupal
 
+# Conf.
+RUN ln -s /etc/apache2/conf.d /etc/apache2/conf-enabled
+
 ##
 # PHP.
 ##
