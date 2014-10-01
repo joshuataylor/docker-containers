@@ -9,7 +9,7 @@ ENV SOLR_VERSION 4.7.0
 ##
 # Packages.
 ##
-
+RUN apt-get update -y
 RUN apt-get install -y openjdk-7-jre-headless tar
 
 ##
