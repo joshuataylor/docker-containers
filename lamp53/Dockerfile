@@ -51,6 +51,8 @@ RUN cd /tmp && unzip /tmp/drush.zip
 RUN mv /tmp/drush-6.2.0 /opt/drush
 RUN ln -s /opt/drush/drush /usr/local/bin/drush
 RUN chmod -R 777 /opt/drush/lib
+# Run drush once, so Console_Table is downloaded and installed.
+RUN /usr/local/bin/drush
 
 # IRC.
 RUN pear install Net_SmartIRC
