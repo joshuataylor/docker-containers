@@ -13,7 +13,7 @@ RUN apt-get update -y
 RUN add-apt-repository ppa:ondrej/php5-oldstable
 RUN apt-get update
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2 libapache2-mod-php5 php5-curl php5-mysql php5-imagick php5-mcrypt php-apc php-pear php5-dev php5-pspell nullmailer libssl-dev
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2 libapache2-mod-php5 php5-curl php5-mysql php5-gd php5-mcrypt php-apc php-pear php5-dev php5-pspell nullmailer libssl-dev
 ADD ./scripts/foreground.sh /etc/apache2/foreground.sh
 RUN rm -rf /var/www/
 RUN chmod 755 /etc/apache2/foreground.sh
