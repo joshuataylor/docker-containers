@@ -1,4 +1,4 @@
-FROM       ubuntu:12.04
+FROM       previousnext/base:latest
 MAINTAINER nick_schuch
 
 ##
