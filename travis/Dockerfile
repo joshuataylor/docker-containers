@@ -1,20 +1,50 @@
-FROM        previousnext/base:latest
-MAINTAINER  Nick Schuch <nick@previousnext.com.au>
+FROM       ubuntu:12.04
+MAINTAINER nick_schuch
+
+##
+# Base.
+##
+
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN apt-get update
+RUN apt-get upgrade -y
+RUN apt-get install -y build-essential
+RUN apt-get install -y software-properties-common
+RUN apt-get install -y byobu curl git htop man unzip vim wget
+RUN apt-get install -y python-software-properties
+RUN rm -rf /var/lib/apt/lists/*
 
 ##
 # Ruby.
 ##
 
-RUN apt-get install -y ruby1.9.1-dev build-essential
+RUN apt-add-repository ppa:brightbox/ruby-ng-experimental
+RUN apt-get update
+RUN apt-get install -y ruby2.0 ruby2.0-dev ruby2.0-doc
+RUN rm -rf /var/lib/apt/lists/*
+
+##
+# Serverspec.
+##
+
+RUN gem install bundler -v 1.6.3
+RUN gem install rake
 
 ##
 # Travis.
 ##
 
-RUN gem install travis --no-rdoc --no-ri
-RUN mkdir /root/.travis
-RUN git clone --branch deploy.2014-07-01.03-01 https://github.com/travis-ci/travis-build.git /root/.travis/travis-build
+RUN sudo gem install travis --no-rdoc --no-ri
+RUN mkdir ~/.travis
+RUN git clone https://github.com/travis-ci/travis-build.git /home/travis/.travis/travis-build && cd /home/travis/.travis/travis-build && git reset --hard e5553110116f026075d47dfd922c5b7427539dc7
 RUN travis version
+
+##
+# Supervisord.
+##
+
+ADD ./conf/supervisor/supervisord.conf /etc/supervisord.conf
 
 ##
 # Startup scripts.
