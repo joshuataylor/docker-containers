@@ -35,9 +35,9 @@ RUN gem install rake
 # Travis.
 ##
 
-RUN sudo gem install travis --no-rdoc --no-ri
-RUN mkdir ~/.travis
-RUN git clone https://github.com/travis-ci/travis-build.git /home/travis/.travis/travis-build && cd /home/travis/.travis/travis-build && git reset --hard e5553110116f026075d47dfd922c5b7427539dc7
+RUN gem install travis --no-rdoc --no-ri
+RUN mkdir /root/.travis
+RUN git clone https://github.com/travis-ci/travis-build.git /root/.travis/travis-build && cd /root/.travis/travis-build && git reset --hard e5553110116f026075d47dfd922c5b7427539dc7
 RUN travis version
 
 ##
