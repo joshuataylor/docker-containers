@@ -55,7 +55,7 @@ RUN chmod -R 777 /opt/drush/lib
 RUN /usr/local/bin/drush
 
 # IRC.
-RUN pear install Net_SmartIRC
+RUN pear install Net_SmartIRC-1.0.2
 
 # Xhprof.
 RUN apt-get install -y build-essential
