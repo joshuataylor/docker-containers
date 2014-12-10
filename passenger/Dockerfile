@@ -32,12 +32,6 @@ RUN a2enmod rewrite
 RUN apt-get install -y ruby1.9.1 ruby1.9.1-dev
 RUN gem install bundler -v 1.6.3
 
-# Tools for building gems.
-RUN apt-get install -y build-essential
-
-# Libraries and utils for gems that redmine needs.
-RUN apt-get install -y libxml2-dev libxslt1-dev libmariadbclient-dev imagemagick libmagick++-dev
-
 ##
 # Mysql.
 ##
@@ -47,6 +41,13 @@ RUN add-apt-repository 'deb http://ftp.nluug.nl/db/mariadb/repo/5.5/ubuntu preci
 RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install mariadb-server
 ADD ./conf/mysql/my.cnf /etc/mysql/my.cnf
+
+##
+# Tools and libraries for building gems.
+##
+
+RUN apt-get install -y build-essential
+RUN apt-get install -y libxml2-dev libxslt1-dev libmariadbclient-dev imagemagick libmagick++-dev
 
 ##
 # Scripts.
