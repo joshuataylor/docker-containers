@@ -8,13 +8,9 @@ RUN apt-get update -y
 ##
 # Apache.
 ##
-
-# We add the brightbox passenger repository.
-RUN add-apt-repository ppa:brightbox/passenger
 RUN apt-get update
 RUN apt-get -y dist-upgrade
-
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2 libapache2-mod-passenger apache2-mpm-worker nullmailer
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2 apache2-mpm-worker nullmailer
 
 ADD ./scripts/foreground.sh /etc/apache2/foreground.sh
 RUN rm -rf /var/www/
@@ -23,14 +19,26 @@ RUN chmod 755 /etc/apache2/foreground.sh
 # This fixes missing file errors.
 RUN test -f /etc/apache2/httpd.conf || touch /etc/apache2/httpd.conf
 RUN test -d /etc/apache2/conf.d || mkdir /etc/apache2/conf.d
+RUN test -d /etc/apache2/conf-enabled || ln -s /etc/apache2/conf.d /etc/apache2/conf-enabled
 
 # Mods.
-RUN a2enmod passenger
 RUN a2enmod rewrite
 
-# Bundler.
+# We add the brightbox ruby and passenger repository.
+RUN add-apt-repository ppa:brightbox/ruby-ng
 RUN apt-get update
-RUN apt-get install -y ruby1.9.1 ruby1.9.1-dev
+
+# Ruby and bundler.
+RUN apt-get install -y ruby1.9.1 ruby1.9.1-dev passenger-common1.9.1 libapache2-mod-passenger
+
+# Enable passenger
+RUN a2enmod passenger
+
+# Set default ruby
+RUN /usr/sbin/update-alternatives --set ruby /usr/bin/ruby1.9.1
+RUN /usr/sbin/update-alternatives --set gem /usr/bin/gem1.9.1
+
+# Install bundler with the correct gem.
 RUN gem install bundler -v 1.6.3
 
 ##
@@ -40,16 +48,15 @@ RUN gem install bundler -v 1.6.3
 RUN apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xcbcb082a1bb943db
 RUN add-apt-repository 'deb http://ftp.nluug.nl/db/mariadb/repo/5.5/ubuntu precise main'
 RUN apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install mariadb-server
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install mariadb-server libmariadbclient-dev 
 ADD ./conf/mysql/my.cnf /etc/mysql/my.cnf
 
 ##
-# Tools and libraries for building gems.
+# Tools and libraries for building gems. Same as Virtualbox.
 ##
 
 RUN apt-get update
-RUN apt-get install -y build-essential
-RUN apt-get install -y libxml2-dev libxslt1-dev libmariadbclient-dev imagemagick libmagick++-dev
+RUN apt-get install -y build-essential imagemagick libapr1-dev libaprutil1-dev libcurl4-openssl-dev libsqlite3-dev libssl-dev ruby-json ruby-libxml ruby-mysql ruby-nokogiri ruby-rmagick ruby1.9.1-dev zlib1g-dev libxslt-dev libxml2-dev libmagickcore-dev libmagickwand-dev
 
 ##
 # Scripts.
