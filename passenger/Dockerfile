@@ -29,6 +29,7 @@ RUN a2enmod passenger
 RUN a2enmod rewrite
 
 # Bundler.
+RUN apt-get update
 RUN apt-get install -y ruby1.9.1 ruby1.9.1-dev
 RUN gem install bundler -v 1.6.3
 
@@ -46,6 +47,7 @@ ADD ./conf/mysql/my.cnf /etc/mysql/my.cnf
 # Tools and libraries for building gems.
 ##
 
+RUN apt-get update
 RUN apt-get install -y build-essential
 RUN apt-get install -y libxml2-dev libxslt1-dev libmariadbclient-dev imagemagick libmagick++-dev
 
