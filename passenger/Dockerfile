@@ -59,6 +59,22 @@ RUN apt-get update
 RUN apt-get install -y build-essential imagemagick libapr1-dev libaprutil1-dev libcurl4-openssl-dev libsqlite3-dev libssl-dev ruby-json ruby-libxml ruby-mysql ruby-nokogiri ruby-rmagick ruby1.9.1-dev zlib1g-dev libxslt-dev libxml2-dev libmagickcore-dev libmagickwand-dev
 
 ##
+# PHP for Composer and Phing.
+##
+
+RUN add-apt-repository ppa:ondrej/php5
+RUN apt-get update
+RUN apt-get install -y php5 php5-curl php-pear
+
+# Composer!
+RUN curl -sS https://getcomposer.org/installer | php
+RUN mv composer.phar /usr/local/bin/composer && chmod +x /usr/local/bin/composer
+
+# Phing!
+RUN pear channel-discover pear.phing.info
+RUN pear install phing/phing-2.6.1
+
+##
 # Scripts.
 #   This is where we add all our utlitiy scripts.
 ##
