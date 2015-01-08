@@ -9,12 +9,12 @@
 ##
 
 if [ -f '/etc/conf/apache/apache2.conf' ]; then
-  scp /etc/conf/apache/apache2.conf /etc/apache2/apache2.conf
+  cp /etc/conf/apache/apache2.conf /etc/apache2/apache2.conf
 fi
 
 if [ -f '/etc/conf/apache/vhost.conf' ]; then
   rm -f /etc/apache2/sites-enabled/*
-  scp /etc/conf/apache/vhost.conf /etc/apache2/sites-available/drupal.conf
+  cp /etc/conf/apache/vhost.conf /etc/apache2/sites-available/drupal.conf
   ln -s /etc/apache2/sites-available/drupal.conf /etc/apache2/sites-enabled/drupal.conf
 fi
 
@@ -23,8 +23,8 @@ fi
 ##
 
 if [ -f '/etc/conf/php/php.ini' ]; then
-  scp /etc/conf/php/php.ini /etc/php5/apache2/php.ini
-  scp /etc/conf/php/php.ini /etc/php5/cli/php.ini
+  cp /etc/conf/php/php.ini /etc/php5/apache2/php.ini
+  cp /etc/conf/php/php.ini /etc/php5/cli/php.ini
 fi
 
 ##
@@ -32,7 +32,7 @@ fi
 ##
 
 if [ -f '/etc/conf/mysql/my.cnf' ]; then
-  scp /etc/conf/mysql/my.cnf /etc/mysql/my.cnf
+  cp /etc/conf/mysql/my.cnf /etc/mysql/my.cnf
 fi
 chown -R mysql:mysql /var/lib/mysql
 
@@ -41,7 +41,7 @@ chown -R mysql:mysql /var/lib/mysql
 ##
 
 if [ -d '/etc/conf/cron' ]; then
-  scp /etc/conf/cron/* /etc/cron.d/
+  cp /etc/conf/cron/* /etc/cron.d/
 fi
 
 ##
@@ -55,16 +55,24 @@ fi
 
 # Root user.
 if [ -f '/etc/conf/sshd/root_authorized_keys' ]; then
-  mkdir -p /root/.ssh
-  scp /etc/conf/sshd/root_authorized_keys /root/.ssh/authorized_keys
+  mkdir -m 0700 -p /root/.ssh
+  cp /etc/conf/sshd/root_authorized_keys /root/.ssh/authorized_keys
+
   chmod 400 /root/.ssh/authorized_keys
   chown root:root -R /root/.ssh
 fi
 
 # Deployer user.
 if [ -f '/etc/conf/sshd/deployer_authorized_keys' ]; then
-  mkdir -p /home/deployer/.ssh
-  scp /etc/conf/sshd/deployer_authorized_keys /home/deployer/.ssh/authorized_keys
+  mkdir -m 0700 -p /home/deployer/.ssh
+  cp /etc/conf/sshd/deployer_authorized_keys /home/deployer/.ssh/authorized_keys
+
+  # Add any extra deployer key fragments.
+  for file in /etc/conf/sshd/deployer_authorized_keys_*; do
+    cat "${file}" >> /home/deployer/.ssh/authorized_keys
+  done
+
+  # Change file permissions.
   chmod 400 /home/deployer/.ssh/authorized_keys
   chown deployer:deployer -R /home/deployer/.ssh
 fi
@@ -80,7 +88,7 @@ chown -R deployer:www-data /var/www
 ##
 
 if [ -f '/etc/conf/rsyslog/rsyslog.conf' ]; then
-  scp /etc/conf/rsyslog/rsyslog.conf /etc/rsyslog.conf
+  cp /etc/conf/rsyslog/rsyslog.conf /etc/rsyslog.conf
 fi
 
 ##
