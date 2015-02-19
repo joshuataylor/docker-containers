@@ -7,6 +7,8 @@ MAINTAINER  Nick Schuch <nick@previousnext.com.au>
 ##
 # Packages.
 ##
+RUN apt-add-repository 'deb http://au.archive.ubuntu.com/ubuntu precise main'
+RUN apt-add-repository 'deb http://au.archive.ubuntu.com/ubuntu precise-updates main'
 RUN apt-get update -y
 RUN apt-get install -y openjdk-7-jre-headless tar
 
