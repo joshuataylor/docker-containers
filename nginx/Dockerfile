@@ -11,6 +11,9 @@ RUN add-apt-repository -y ppa:nginx/stable
 RUN apt-get update
 RUN apt-get -y install nginx
 
+# Do not die when we have too many vhosts.
+RUN sed -i 's/# server_names_hash_bucket_size 64/server_names_hash_bucket_size 2048/g' /etc/nginx/nginx.conf
+
 ##
 # Supervisord.
 ##
