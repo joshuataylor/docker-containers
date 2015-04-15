@@ -1,0 +1,24 @@
+# This is a docker Elasticsearch environment for PNX QA and Staging.
+#
+
+FROM        elasticsearch:latest
+MAINTAINER  Peter Lieverdink <peter.lieverdink@previousnext.com.au>
+
+##
+# Configure ElasticSearch for PNX.
+##
+ADD ./conf/elasticsearch.yml /usr/share/elasticsearch/config
+
+##
+# Repeat the ES steps.
+##
+
+ENV PATH /usr/share/elasticsearch/bin:$PATH
+
+VOLUME /usr/share/elasticsearch/data
+
+ENTRYPOINT ["/docker-entrypoint.sh"]
+
+EXPOSE 9200 9300
+
+CMD ["elasticsearch"]
