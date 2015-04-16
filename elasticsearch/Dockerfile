@@ -7,7 +7,7 @@ MAINTAINER  Peter Lieverdink <peter.lieverdink@previousnext.com.au>
 ##
 # Configure ElasticSearch for PNX.
 ##
-ADD ./conf/elasticsearch.yml /usr/share/elasticsearch/config
+ADD ./conf/elasticsearch.yml /usr/share/elasticsearch/config/elasticsearch.yml
 
 ##
 # Repeat the ES steps.
