@@ -88,6 +88,15 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install mariadb-server
 ADD ./conf/mysql/my.cnf /etc/mysql/my.cnf
 
 ##
+# wkhtmltopdf.
+#   We'll probably want a PPA for this at some stage.
+##
+
+RUN apt-get -y install fontconfig libfontconfig1 libfreetype6 libpng12-0 zlib1g libjpeg-turbo8 libssl1.0.0 libx11-6 libxext6 libxrender1 xfonts-base xfonts-75dpi libstdc++6 libc6
+RUN wget -q -O /tmp/wkhtmltox.deb http://downloads.sourceforge.net/project/wkhtmltopdf/0.12.2.1/wkhtmltox-0.12.2.1_linux-trusty-amd64.deb
+RUN dpkg -i /tmp/wkhtmltox.deb
+
+##
 # Cron.
 ##
 
