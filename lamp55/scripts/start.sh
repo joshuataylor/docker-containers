@@ -69,6 +69,15 @@ if [ -f '/etc/conf/sshd/deployer_authorized_keys' ]; then
   chown deployer:deployer -R /home/deployer/.ssh
 fi
 
+# AWS credentials.
+if [ -f '/etc/conf/aws/credentials' ]; then
+  mkdir -p /home/deployer/.aws
+  cp /etc/conf/aws/credentials /home/deployer/.aws/credentials
+  chmod 750 /home/deployer/.aws
+  chmod 640 /home/deployer/.aws/credentials
+  chown deployer:deployer -R /home/deployer/.aws
+fi
+
 ##
 # Permissions.
 ##
