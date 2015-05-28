@@ -36,6 +36,9 @@ RUN rm -f /etc/apache2/sites-enabled/*
 ADD ./conf/apache2/vhost.conf /etc/apache2/sites-available/drupal.conf
 RUN ln -s /etc/apache2/sites-available/drupal.conf /etc/apache2/sites-enabled/drupal.conf
 
+# Perms.
+RUN adduser deployer www-data
+
 ##
 # PHP.
 ##
