@@ -26,6 +26,9 @@ RUN ln -s /etc/apache2/sites-available/drupal /etc/apache2/sites-enabled/drupal
 # Conf.
 RUN ln -s /etc/apache2/conf.d /etc/apache2/conf-enabled
 
+# Perms.
+RUN adduser deployer www-data
+
 ##
 # PHP.
 ##
