@@ -48,6 +48,7 @@ RUN (cd /opt/jenkins/plugins && wget --no-check-certificate http://updates.jenki
 RUN (cd /opt/jenkins/plugins && wget --no-check-certificate http://updates.jenkins-ci.org/download/plugins/sidebar-link/1.6/sidebar-link.hpi)
 RUN (cd /opt/jenkins/plugins && wget --no-check-certificate http://updates.jenkins-ci.org/download/plugins/ws-cleanup/0.21/ws-cleanup.hpi)
 RUN (cd /opt/jenkins/plugins && wget --no-check-certificate http://updates.jenkins-ci.org/download/plugins/role-strategy/2.2.0/role-strategy.hpi)
+RUN (cd /opt/jenkins/plugins && wget --no-check-certificate http://updates.jenkins-ci.org/download/plugins/slack/1.8/slack.hpi)
 RUN echo "java -Djava.awt.headless=true -jar /usr/share/jenkins/jenkins.war" > /usr/local/bin/run && chmod +x /usr/local/bin/run
 
 ENV JENKINS_HOME /var/lib/jenkins
