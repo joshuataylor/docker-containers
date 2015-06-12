@@ -25,6 +25,11 @@ RUN cd /tmp && wget -q https://storage.googleapis.com/golang/$GOBALL
 RUN cd /tmp && tar -C /usr/local -xzf $GOBALL
 RUN mkdir -p /opt/golang
 RUN rm /tmp/$GOBALL
-ADD profile /etc/profile.d/go.sh
+
+# ENV.
+echo GOPATH=/opt/golang >> /etc/environment
+echo GOPATH=/opt/golang >> /etc/profile
+echo PATH=$PATH:/usr/local/go/bin:/opt/golang/bin >> /etc/environment
+echo PATH=$PATH:/usr/local/go/bin:/opt/golang/bin >> /etc/profile
 
 CMD /usr/sbin/sshd -D
