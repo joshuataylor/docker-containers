@@ -12,6 +12,9 @@ RUN apt-get -y upgrade
 RUN dpkg-divert --local --rename --add /sbin/initctl
 RUN ln -fs /bin/true /sbin/initctl
 
+# Tools.
+RUN apt-get install -y make
+
 # SSHD.
 RUN apt-get install -y openssh-server
 RUN mkdir -p /var/run/sshd
