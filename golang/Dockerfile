@@ -23,7 +23,7 @@ RUN chown root:root -R /root/.ssh
 # Golang.
 RUN cd /tmp && wget -q https://storage.googleapis.com/golang/$GOBALL
 RUN cd /tmp && tar -C /usr/local -xzf $GOBALL
-RUN mkdir -p $GOPATH
+RUN mkdir -p /opt/golang
 RUN rm /tmp/$GOBALL
 ADD profile /etc/profile.d/go.sh
 
