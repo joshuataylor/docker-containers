@@ -13,7 +13,7 @@ RUN dpkg-divert --local --rename --add /sbin/initctl
 RUN ln -fs /bin/true /sbin/initctl
 
 # Tools.
-RUN apt-get install -y make
+RUN apt-get install -y make rsync
 
 # SSHD.
 RUN apt-get install -y openssh-server
