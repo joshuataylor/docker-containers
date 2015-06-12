@@ -27,9 +27,9 @@ RUN mkdir -p /opt/golang
 RUN rm /tmp/$GOBALL
 
 # ENV.
-echo GOPATH=/opt/golang >> /etc/environment
-echo GOPATH=/opt/golang >> /etc/profile
-echo PATH=$PATH:/usr/local/go/bin:/opt/golang/bin >> /etc/environment
-echo PATH=$PATH:/usr/local/go/bin:/opt/golang/bin >> /etc/profile
+RUN echo GOPATH=/opt/golang >> /etc/environment
+RUN echo GOPATH=/opt/golang >> /etc/profile
+RUN echo PATH=$PATH:/usr/local/go/bin:/opt/golang/bin >> /etc/environment
+RUN echo PATH=$PATH:/usr/local/go/bin:/opt/golang/bin >> /etc/profile
 
 CMD /usr/sbin/sshd -D
