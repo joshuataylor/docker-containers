@@ -1,0 +1,3 @@
+GOPATH=/opt/golang
+PATH=$PATH:/usr/local/go/bin:/opt/golang/bin
+

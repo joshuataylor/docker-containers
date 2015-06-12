@@ -2,9 +2,6 @@ FROM        ubuntu:14.04
 MAINTAINER  Nick Schuch <nick@previousnext.com.au>
 
 ENV GOBALL go1.4.1.linux-amd64.tar.gz
-ENV GOPATH /opt/golang
-ENV PATH $PATH:/usr/local/go/bin
-ENV PATH $PATH:/opt/golang/bin
 
 # APT.
 RUN apt-get update
@@ -27,5 +24,7 @@ RUN chown root:root -R /root/.ssh
 RUN cd /tmp && wget -q https://storage.googleapis.com/golang/$GOBALL
 RUN cd /tmp && tar -C /usr/local -xzf $GOBALL
 RUN mkdir -p $GOPATH
+RUN rm /tmp/$GOBALL
+ADD profile /etc/profile.d/go.sh
 
 CMD /usr/sbin/sshd -D
