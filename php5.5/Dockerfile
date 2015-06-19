@@ -2,7 +2,6 @@ FROM        ubuntu:14.04
 MAINTAINER  Nick Schuch <nick@previousnext.com.au>
 
 # APT.
-RUN add-apt-repository ppa:ondrej/php5
 RUN apt-get update
 RUN apt-get -y upgrade
 RUN dpkg-divert --local --rename --add /sbin/initctl
