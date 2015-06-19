@@ -20,7 +20,6 @@ RUN chown root:root -R /root/.ssh
 
 # PHP.
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install php5 php5-curl php5-mcrypt php-apc php-pear php5-dev
-RUN curl -sS https://getcomposer.org/installer | php
-RUN mv composer.phar /usr/local/bin/composer && chmod +x /usr/local/bin/composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin
 
 CMD /usr/sbin/sshd -D
