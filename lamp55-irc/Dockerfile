@@ -11,8 +11,8 @@ RUN apt-get update -y
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install stunnel4
 
-ADD ./conf/stunnel/slack.conf /etc/stunnel4/slack.conf
-ADD ./conf/stunnel/stunnel.pem /etc/stunnel4/stunnel.pem
+ADD ./conf/stunnel/slack.conf /etc/stunnel/slack.conf
+ADD ./conf/stunnel/stunnel.pem /etc/stunnel/stunnel.pem
 
 # Updated supervisord with stunnel in it.
 ADD ./conf/supervisor/supervisord.conf /etc/supervisord.conf
