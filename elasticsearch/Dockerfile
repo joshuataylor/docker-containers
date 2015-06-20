@@ -4,6 +4,9 @@
 FROM        elasticsearch:latest
 MAINTAINER  Peter Lieverdink <peter.lieverdink@previousnext.com.au>
 
+# Only used for test builds.
+ENV ES_HEAP_SIZE 128m
+
 ##
 # Configure ElasticSearch for PNX.
 ##
