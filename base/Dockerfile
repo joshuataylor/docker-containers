@@ -21,6 +21,10 @@ RUN ln -fs /bin/true /sbin/initctl
 # APT.
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install fail2ban vim git curl wget pwgen python-setuptools vim-tiny sudo python-software-properties cron unzip
 
+# Ensure that locale files are regenerated.
+RUN locale-gen en_AU en_AU.UTF-8
+RUN dpkg-reconfigure locales
+
 ##
 # Users.
 ##
