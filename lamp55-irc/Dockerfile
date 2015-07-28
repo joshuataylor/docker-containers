@@ -14,6 +14,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install stunnel4
 ADD ./conf/stunnel/slack.conf /etc/stunnel/slack.conf
 ADD ./conf/stunnel/stunnel.pem /etc/stunnel/stunnel.pem
 
+# IRC.
+RUN pear install Net_SmartIRC-1.0.2
+
 # Updated supervisord with stunnel in it.
 ADD ./conf/supervisor/supervisord.conf /etc/supervisord.conf
 
