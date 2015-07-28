@@ -14,7 +14,7 @@ RUN add-apt-repository ppa:ondrej/php5
 RUN apt-get update
 RUN apt-get -y dist-upgrade
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2 php5 libapache2-mod-php5 php5-curl php5-mcrypt php5-mysql php5-gd php-apc php-pear php5-dev php5-pspell nullmailer libssl-dev
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2 php5 libapache2-mod-php5 php5-curl php5-mcrypt php5-mysql php5-gd php-apc php-pear php5-dev php5-pspell php5-memcached nullmailer libssl-dev
 
 ADD ./scripts/foreground.sh /etc/apache2/foreground.sh
 RUN rm -rf /var/www/
@@ -89,6 +89,12 @@ RUN add-apt-repository 'deb http://mirror.aarnet.edu.au/pub/MariaDB/repo/5.5/ubu
 RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install mariadb-server
 ADD ./conf/mysql/my.cnf /etc/mysql/my.cnf
+
+##
+## Memcached.
+##
+RUN apt-get update
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install memcached
 
 ##
 # wkhtmltopdf.
