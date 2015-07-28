@@ -67,9 +67,6 @@ RUN chmod -R 777 /opt/drush/lib
 # Run drush once, so Console_Table is downloaded and installed.
 RUN /usr/local/bin/drush
 
-# IRC.
-RUN pear install Net_SmartIRC-1.0.2
-
 # Xhprof.
 RUN apt-get install -y build-essential
 RUN pear channel-update pear.php.net
