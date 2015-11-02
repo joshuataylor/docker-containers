@@ -12,9 +12,15 @@ RUN apt-get update -y
 # We add the stable PHP 5.5 repository.
 RUN add-apt-repository ppa:ondrej/php5
 RUN apt-get update
+
+# And actually, some PHP5.5 Twig goodness as well.
+RUN apt-add-repository ppa:previousnext/ppa
+RUN apt-get update
+
+# Now upgrade.
 RUN apt-get -y dist-upgrade
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2 php5 libapache2-mod-php5 php5-curl php5-mcrypt php5-mysql php5-gd php-apc php-pear php5-dev php5-pspell php5-memcached nullmailer libssl-dev
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2 php5 libapache2-mod-php5 php5-curl php5-mcrypt php5-mysql php5-gd php-apc php-pear php5-dev php5-pspell php5-memcached php5-twig nullmailer libssl-dev
 
 ADD ./scripts/foreground.sh /etc/apache2/foreground.sh
 RUN rm -rf /var/www/
