@@ -1,7 +1,7 @@
 # This is a docker Elasticsearch environment for PNX QA and Staging.
 #
 
-FROM        elasticsearch:latest
+FROM        elasticsearch:1.7.3
 MAINTAINER  Peter Lieverdink <peter.lieverdink@previousnext.com.au>
 
 # Only used for test builds.
