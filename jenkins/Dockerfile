@@ -16,7 +16,7 @@ RUN apt-get update
 # Install.
 RUN RUNLEVEL=1 DEBIAN_FRONTEND=1 apt-get install -y jenkins ttf-dejavu
 RUN rm -f /usr/share/jenkins/jenkins.war
-ADD http://mirrors.jenkins-ci.org/war/1.606/jenkins.war /usr/share/jenkins/jenkins.war
+ADD http://mirrors.jenkins-ci.org/war-stable/latest/jenkins.war /usr/share/jenkins/jenkins.war
 RUN chmod 644 /usr/share/jenkins/jenkins.war
 
 # Plugins.
