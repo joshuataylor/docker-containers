@@ -6,7 +6,7 @@ MAINTAINER Nick Schuch "nick@previousnext.com.au"
 ##
 
 # Java.
-RUN RUNLEVEL=1 DEBIAN_FRONTEND=noninteractive apt-get install -y wget openjdk-6-jre-headless git-core
+RUN RUNLEVEL=1 DEBIAN_FRONTEND=noninteractive apt-get install -y wget openjdk-7-jre-headless git-core
 
 # Repository.
 RUN wget -q -O - http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key | apt-key add -
