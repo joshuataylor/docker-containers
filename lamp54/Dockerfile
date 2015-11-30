@@ -33,6 +33,9 @@ RUN ln -s /etc/apache2/conf.d /etc/apache2/conf-enabled
 # Perms.
 RUN adduser deployer www-data
 
+# Environment.
+ADD ./conf/environment/environment /etc/environment
+
 ##
 # PHP.
 ##
@@ -54,15 +57,22 @@ RUN pear install phing/phing-2.6.1
 
 # Drush.
 ADD https://github.com/drush-ops/drush/archive/6.2.0.zip /tmp/drush.zip
-RUN cd /tmp && unzip /tmp/drush.zip
+ADD http://pkgs.fedoraproject.org/repo/pkgs/php-pear-Console-Table/Console_Table-1.1.3.tgz/md5/34b5f34db1ab0c4daedf2862958af257/Console_Table-1.1.3.tgz /tmp/Console_Table-1.1.3.tgz
+RUN cd /tmp && unzip -d /tmp /tmp/drush.zip
 RUN mv /tmp/drush-6.2.0 /opt/drush
-RUN ln -s /opt/drush/drush /usr/local/bin/drush
-RUN chmod -R 777 /opt/drush/lib
-# Run drush once, so Console_Table is downloaded and installed.
-RUN /usr/local/bin/drush
+RUN cd /opt/drush/lib && tar xf /tmp/Console_Table-1.1.3.tgz
+RUN ln -s /opt/drush/drush /usr/local/bin/drush6
 
-# IRC.
-RUN pear install Net_SmartIRC-1.0.2
+# Make drush6 the default (for now).
+RUN ln -s /opt/drush/drush /usr/local/bin/drush
+
+RUN mkdir -p /opt/drush-7
+RUN cd /opt/drush-7 && COMPOSER_HOME=/opt/drush-7 composer install drush/drush 7
+RUN ln -s /opt/drush-7/drush/drush /usr/local/bin/drush7
+
+RUN mkdir -p /opt/drush-8
+RUN cd /opt/drush-8 && COMPOSER_HOME=/opt/drush-8 composer install drush/drush 8
+RUN ln -s /opt/drush-8/drush/drush /usr/local/bin/drush8
 
 # Xhprof.
 RUN apt-get install -y build-essential
