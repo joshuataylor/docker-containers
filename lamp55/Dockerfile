@@ -78,11 +78,11 @@ RUN ln -s /opt/drush/drush /usr/local/bin/drush6
 RUN ln -s /opt/drush/drush /usr/local/bin/drush
 
 RUN mkdir -p /opt/drush-7
-RUN cd /opt/drush-7 && COMPOSER_HOME=/opt/drush-7 composer install drush/drush 7
+RUN cd /opt/drush-7 && COMPOSER_HOME=/opt/drush-7 composer require drush/drush 7
 RUN ln -s /opt/drush-7/drush/drush /usr/local/bin/drush7
 
 RUN mkdir -p /opt/drush-8
-RUN cd /opt/drush-8 && COMPOSER_HOME=/opt/drush-8 composer install drush/drush 8
+RUN cd /opt/drush-8 && COMPOSER_HOME=/opt/drush-8 composer require drush/drush 8
 RUN ln -s /opt/drush-8/drush/drush /usr/local/bin/drush8
 
 # Xhprof.
