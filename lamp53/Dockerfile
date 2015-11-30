@@ -63,14 +63,14 @@ RUN ln -s /opt/drush/drush /usr/local/bin/drush
 RUN pear install Net_SmartIRC-1.0.2
 
 # Xhprof.
-RUN apt-get install -y build-essential
-RUN pear channel-update pear.php.net
-RUN pecl install xhprof-beta
+# RUN apt-get install -y build-essential
+# RUN pear channel-update pear.php.net
+# RUN pecl install xhprof-beta
 
 # Xdebug.
-RUN apt-get install -y build-essential
-RUN pear channel-update pear.php.net
-RUN pecl install xdebug
+# RUN apt-get install -y build-essential
+# RUN pear channel-update pear.php.net
+# RUN pecl install xdebug
 
 ##
 # Mysql.
