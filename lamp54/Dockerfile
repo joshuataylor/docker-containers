@@ -75,14 +75,14 @@ RUN cd /opt/drush-8 && COMPOSER_HOME=/opt/drush-8 composer require drush/drush 8
 RUN ln -s /opt/drush-8/drush/drush /usr/local/bin/drush8
 
 # Xhprof.
-RUN apt-get install -y build-essential
-RUN pear channel-update pear.php.net
-RUN pecl install xhprof-beta
+# RUN apt-get install -y build-essential
+# RUN pear channel-update pear.php.net
+# RUN pecl install xhprof-beta
 
 # Xdebug.
-RUN apt-get install -y build-essential
-RUN pear channel-update pear.php.net
-RUN pecl install xdebug
+# RUN apt-get install -y build-essential
+# RUN pear channel-update pear.php.net
+# RUN pecl install xdebug
 
 ##
 # Mysql.
