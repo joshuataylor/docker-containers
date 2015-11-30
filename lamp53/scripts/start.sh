@@ -5,6 +5,14 @@
 ##
 
 ##
+# Environment.
+##
+if [ -f '/etc/conf/environment/environment' ]; then
+  . /etc/conf/environment/environment
+  cp /etc/conf/environment/environment /etc/environment
+fi
+
+##
 # Apache.
 ##
 
