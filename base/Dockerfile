@@ -8,7 +8,7 @@ MAINTAINER  Nick Schuch <nick@previousnext.com.au>
 ##
 
 RUN apt-get update
-RUN apt-get -y upgrade
+RUN apt-get -y dist-upgrade
 
 # Keep upstart from complaining
 RUN dpkg-divert --local --rename --add /sbin/initctl
@@ -70,4 +70,7 @@ RUN mkdir /var/log/supervisor/
 # Inotify
 ##
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install inoticoming
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y autoremove
+
+# Cleanup.
+RUN apt-get -y dist-upgrade
