@@ -50,12 +50,14 @@ RUN pear install phing/phing-2.6.1
 
 # Drush.
 ADD https://github.com/drush-ops/drush/archive/6.2.0.zip /tmp/drush.zip
-RUN cd /tmp && unzip /tmp/drush.zip
+ADD http://pkgs.fedoraproject.org/repo/pkgs/php-pear-Console-Table/Console_Table-1.1.3.tgz/md5/34b5f34db1ab0c4daedf2862958af257/Console_Table-1.1.3.tgz /tmp/Console_Table-1.1.3.tgz
+RUN cd /tmp && unzip -d /tmp /tmp/drush.zip
 RUN mv /tmp/drush-6.2.0 /opt/drush
+RUN cd /opt/drush/lib && tar xf /tmp/Console_Table-1.1.3.tgz
+RUN ln -s /opt/drush/drush /usr/local/bin/drush6
+
+# Set drush 6 as default.
 RUN ln -s /opt/drush/drush /usr/local/bin/drush
-RUN chmod -R 777 /opt/drush/lib
-# Run drush once, so Console_Table is downloaded and installed.
-RUN /usr/local/bin/drush
 
 # IRC.
 RUN pear install Net_SmartIRC-1.0.2
