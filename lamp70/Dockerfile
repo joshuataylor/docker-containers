@@ -70,6 +70,10 @@ RUN easy_install supervisor
 ADD ./conf/supervisor/supervisord.conf /etc/supervisord.conf
 RUN mkdir /var/log/supervisor/
 
+##
+# Need this for apt-add-repository.
+##
+RUN apt-get install -y python-software-properties
 
 ##
 # Apache.
