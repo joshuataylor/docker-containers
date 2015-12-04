@@ -43,6 +43,12 @@ RUN apt-get install -y openssh-server
 RUN mkdir -p /var/run/sshd
 
 ##
+# Fix ssh.
+# See https://github.com/docker/docker/issues/5663
+##
+RUN sed -ri 's/^session\s+required\s+pam_loginuid.so$/session optional pam_loginuid.so/' /etc/pam.d/sshd
+
+##
 # Fail2ban.
 ##
 
