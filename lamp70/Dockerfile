@@ -123,8 +123,8 @@ ADD ./conf/environment/environment /etc/environment
 # PHP.
 ##
 
-ADD ./conf/php/php.ini /etc/php/7.0/apache2/php.ini
-ADD ./conf/php/php.ini /etc/php/7.0/cli/php.ini
+# ADD ./conf/php/php.ini /etc/php/7.0/apache2/php.ini
+# ADD ./conf/php/php.ini /etc/php/7.0/cli/php.ini
 
 # Composer.
 RUN curl -sS https://getcomposer.org/installer | php
