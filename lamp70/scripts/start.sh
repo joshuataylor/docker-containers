@@ -30,10 +30,10 @@ fi
 # PHP.
 ##
 
-if [ -f '/etc/conf/php/php.ini' ]; then
-  scp /etc/conf/php/php.ini /etc/php5/apache2/php.ini
-  scp /etc/conf/php/php.ini /etc/php5/cli/php.ini
-fi
+# if [ -f '/etc/conf/php/php.ini' ]; then
+#   scp /etc/conf/php/php.ini /etc/php5/apache2/php.ini
+#   scp /etc/conf/php/php.ini /etc/php5/cli/php.ini
+# fi
 
 ##
 # Mysql.
