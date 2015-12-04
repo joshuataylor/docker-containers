@@ -1,9 +1,75 @@
 # This is a docker Drupal environment.
 
-FROM        previousnext/base:latest
+FROM        ubuntu:14.04
 MAINTAINER  Peter Lieverdink <peter.lieverdink@previousnext.com.au>
 
-RUN apt-get update -y
+##
+# Perform the steps our base image would do for other containers.
+##
+
+##
+# APT.
+##
+
+RUN apt-get -y update
+RUN apt-get -y dist-upgrade
+
+# Keep upstart from complaining
+RUN dpkg-divert --local --rename --add /sbin/initctl
+RUN ln -fs /bin/true /sbin/initctl
+
+##
+# Base.
+##
+
+# APT.
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install fail2ban vim git curl wget pwgen python-setuptools vim-tiny sudo python-software-properties cron unzip
+
+# Ensure that locale files are regenerated.
+RUN locale-gen en_AU en_AU.UTF-8
+RUN dpkg-reconfigure locales
+
+##
+# Users.
+##
+
+RUN useradd --create-home --shell /bin/bash --user-group deployer
+
+##
+# SSHD.
+##
+
+RUN apt-get install -y openssh-server
+RUN mkdir -p /var/run/sshd
+
+##
+# Fail2ban.
+##
+
+RUN mkdir /var/run/fail2ban
+
+##
+# Rsyslog.
+##
+
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install rsyslog rsyslog-doc
+RUN sed -i 's/xconsole/console/g' /etc/rsyslog.d/*
+
+##
+# Startup scripts.
+##
+
+ADD ./scripts/start.sh /root/start.sh
+RUN chmod 755 /root/start.sh
+
+##
+# Supervisord.
+##
+
+RUN easy_install supervisor
+ADD ./conf/supervisor/supervisord.conf /etc/supervisord.conf
+RUN mkdir /var/log/supervisor/
+
 
 ##
 # Apache.
@@ -30,8 +96,8 @@ RUN touch /etc/apache2/httpd.conf
 RUN mkdir /etc/apache2/conf.d
 
 # Mods.
-RUN cd /etc/apache2/mods-enabled && ln -s ../mods-available/rewrite.load .
-RUN cd /etc/apache2/mods-enabled && ln -s ../mods-available/headers.load .
+RUN a2enmod rewrite
+RUN a2enmod headers
 
 # We are removing this because we deal with it in our own custom apache2.conf.
 RUN rm /etc/apache2/mods-enabled/mpm_prefork.conf
@@ -39,7 +105,7 @@ RUN rm /etc/apache2/mods-enabled/mpm_prefork.conf
 # vHost.
 RUN rm -f /etc/apache2/sites-enabled/*
 ADD ./conf/apache2/vhost.conf /etc/apache2/sites-available/drupal.conf
-RUN ln -s /etc/apache2/sites-available/drupal.conf /etc/apache2/sites-enabled/drupal.conf
+RUN a2ensite drupal
 
 # Perms.
 RUN adduser deployer www-data
@@ -82,7 +148,7 @@ RUN ln -s /opt/drush-8/vendor/bin/drush /usr/local/bin/drush
 ##
 
 RUN apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xcbcb082a1bb943db
-RUN add-apt-repository 'deb http://mirror.aarnet.edu.au/pub/MariaDB/repo/5.5/ubuntu precise main'
+RUN add-apt-repository 'deb http://mirror.aarnet.edu.au/pub/MariaDB/repo/5.5/ubuntu trusty main'
 RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install mariadb-server
 ADD ./conf/mysql/my.cnf /etc/mysql/my.cnf
@@ -98,9 +164,15 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install memcached
 #   We'll probably want a PPA for this at some stage.
 ##
 
-RUN apt-get -y install fontconfig libfontconfig1 libfreetype6 libpng12-0 zlib1g libjpeg-turbo8 libssl1.0.0 libx11-6 libxext6 libxrender1 xfonts-base xfonts-75dpi libstdc++6 libc6
-RUN wget -q -O /tmp/wkhtmltox.deb http://download.gna.org/wkhtmltopdf/0.12/0.12.2.1/wkhtmltox-0.12.2.1_linux-trusty-amd64.deb
-RUN dpkg -i /tmp/wkhtmltox.deb
+# RUN apt-get -y install fontconfig libfontconfig1 libfreetype6 libpng12-0 zlib1g libjpeg-turbo8 libssl1.0.0 libx11-6 libxext6 libxrender1 xfonts-base xfonts-75dpi libstdc++6 libc6
+# RUN wget -q -O /tmp/wkhtmltox.deb http://download.gna.org/wkhtmltopdf/0.12/0.12.2.1/wkhtmltox-0.12.2.1_linux-trusty-amd64.deb
+# RUN dpkg -i /tmp/wkhtmltox.deb
+
+
+##
+# Cleanup
+##
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y autoremove
 
 ##
 # Cron.
