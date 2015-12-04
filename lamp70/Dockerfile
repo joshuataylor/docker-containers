@@ -73,14 +73,16 @@ RUN mkdir /var/log/supervisor/
 ##
 # Need this for apt-add-repository.
 ##
-RUN apt-get install -y python-software-properties
+RUN apt-get install -y software-properties-common
 
 ##
 # Apache.
 ##
 
 # We add the not-so-stable PHP 7.0 repository.
-RUN add-apt-repository ppa:ondrej/php-7.0
+RUN gpg --keyserver pgp.mit.edu --recv-keys 4F4EA0AAE5267A6C
+RUN gpg --export --armor E5267A6C | apt-key add -
+RUN apt-add-repository ppa:ondrej/php-7.0
 RUN apt-get update
 RUN apt-get -y dist-upgrade
 
