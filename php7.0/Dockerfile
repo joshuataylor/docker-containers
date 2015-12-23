@@ -28,6 +28,9 @@ RUN chown pnx:pnx -R /home/pnx/.ssh
 # This is common build dir.
 RUN mkdir /data && chown -R pnx:pnx /data
 
+# Need this for apt-add-repository.
+RUN apt-get install -y software-properties-common
+
 # PPA.
 RUN gpg --keyserver pgp.mit.edu --recv-keys 4F4EA0AAE5267A6C
 RUN gpg --export --armor E5267A6C | apt-key add -
