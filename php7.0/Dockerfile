@@ -38,7 +38,7 @@ RUN apt-add-repository ppa:ondrej/php-7.0
 RUN apt-get update
 
 # PHP.
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install php7.0 php7.0-curl php7.0-mcrypt php7.0-dev php-apcu php-apcu-bc php-xdebug php-pear
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install php7.0-cli php7.0-curl php7.0-mcrypt php7.0-dev php-apcu php-apcu-bc php-xdebug php-pear
 RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
 RUN chmod a+x /usr/local/bin/composer
