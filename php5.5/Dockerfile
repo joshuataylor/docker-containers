@@ -29,7 +29,7 @@ RUN chown pnx:pnx -R /home/pnx/.ssh
 RUN mkdir /data && chown -R pnx:pnx /data
 
 # PHP.
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install php5 php5-curl php5-mcrypt php-apc php-pear php5-dev
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install php5 php5-curl php5-mcrypt php-apc php-pear php5-dev php5-xdebug
 RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
 RUN chmod a+x /usr/local/bin/composer
