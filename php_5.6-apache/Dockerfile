@@ -15,6 +15,10 @@ ADD apache2.conf /etc/apache2/apache2.conf
 # Configuration
 ADD settings.config.php /etc/drupal/settings.config.php
 
+# Composer.
+RUN curl -sS https://getcomposer.org/installer | php
+RUN mv composer.phar /usr/local/bin/composer && chmod +x /usr/local/bin/composer
+
 # Tuner - https://github.com/previousnext/tuner
 ADD bin/tuner /usr/local/bin/tuner
 RUN chmod a+x /usr/local/bin/tuner
