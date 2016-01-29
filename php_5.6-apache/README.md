@@ -4,7 +4,7 @@ PHP 5.6 - Apache Edition
 **Code directory**
 
 ```
-/var/www/html
+/data/app
 ```
 
 **Environment variables**
