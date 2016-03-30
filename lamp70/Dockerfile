@@ -79,16 +79,20 @@ RUN mkdir /var/log/supervisor/
 ##
 # Need this for apt-add-repository.
 ##
-RUN apt-get install -y software-properties-common
+RUN apt-get install -y software-properties-common language-pack-en-base
+
+##
+# Fix UTF-8 language issue with the PPA.
+##
+RUN locale-gen en_AU.UTF-8
+
 
 ##
 # Apache.
 ##
 
-# We add the not-so-stable PHP 7.0 repository.
-RUN gpg --keyserver pgp.mit.edu --recv-keys 4F4EA0AAE5267A6C
-RUN gpg --export --armor E5267A6C | apt-key add -
-RUN apt-add-repository ppa:ondrej/php-7.0
+# We add the now-stable PHP 7.0 repository.
+RUN LC_ALL=en_AU.UTF-8 apt-add-repository ppa:ondrej/php
 RUN apt-get update
 RUN apt-get -y dist-upgrade
 
