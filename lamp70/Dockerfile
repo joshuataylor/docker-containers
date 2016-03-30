@@ -92,7 +92,7 @@ RUN apt-add-repository ppa:ondrej/php-7.0
 RUN apt-get update
 RUN apt-get -y dist-upgrade
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2 php7.0 libapache2-mod-php7.0 php7.0-curl php7.0-mysql php7.0-gd php7.0-dev php7.0-pspell nullmailer libssl-dev
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2 php7.0 libapache2-mod-php7.0 php7.0-curl php7.0-gd php7.0-json php7.0-mbstring php7.0-mcrypt php7.0-mysql php7.0-opcache php7.0-pspell php7.0-readline php7.0-xml php-apcu php-apcu-bc nullmailer libssl-dev
 
 # We add our own php5-twig repository.
 # RUN apt-add-repository ppa:previousnext/ppa
@@ -131,6 +131,7 @@ ADD ./conf/environment/environment /etc/environment
 
 # ADD ./conf/php/php.ini /etc/php/7.0/apache2/php.ini
 # ADD ./conf/php/php.ini /etc/php/7.0/cli/php.ini
+ADD ./conf/php/apcu.ini /etc/php/7.0/mods-available/apcu.ini
 
 # Composer.
 RUN curl -sS https://getcomposer.org/installer | php
@@ -151,7 +152,7 @@ RUN cd /opt/drush-7 && COMPOSER_HOME=/opt/drush-7 composer --prefer-dist require
 RUN ln -s /opt/drush-7/vendor/bin/drush /usr/local/bin/drush7
 
 RUN mkdir -p /opt/drush-8
-RUN cd /opt/drush-8 && COMPOSER_HOME=/opt/drush-8 composer --prefer-dist require drush/drush 8
+RUN cd /opt/drush-8 && COMPOSER_HOME=/opt/drush-8 composer --prefer-dist require drush/drush 8.0.5
 RUN ln -s /opt/drush-8/vendor/bin/drush /usr/local/bin/drush8
 RUN ln -s /opt/drush-8/vendor/bin/drush /usr/local/bin/drush
 
