@@ -81,7 +81,8 @@ fi
 # Permissions.
 ##
 
-chown -R deployer:www-data /var/www
+# This is killing dev05 at container start.
+# chown -R deployer:www-data /var/www
 
 ##
 # Rsyslog.
