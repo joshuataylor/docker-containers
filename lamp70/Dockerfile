@@ -96,7 +96,7 @@ RUN LC_ALL=en_AU.UTF-8 apt-add-repository ppa:ondrej/php
 RUN apt-get update
 RUN apt-get -y dist-upgrade
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2 php7.0 libapache2-mod-php7.0 php7.0-bcmath php7.0-curl php7.0-gd php7.0-json php7.0-mbstring php7.0-mcrypt php7.0-mysql php7.0-opcache php7.0-pspell php7.0-readline php7.0-xml php-apcu php-apcu-bc nullmailer libssl-dev
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2 php7.0 libapache2-mod-php7.0 php7.0-bcmath php7.0-curl php7.0-gd php7.0-json php7.0-mbstring php7.0-mcrypt php7.0-mysql php7.0-opcache php7.0-pspell php7.0-readline php7.0-xml php-apcu php-apcu-bc nullmailer libssl-dev php7.0-zip
 
 # We add our own php5-twig repository.
 # RUN apt-add-repository ppa:previousnext/ppa
